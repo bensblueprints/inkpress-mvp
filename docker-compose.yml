@@ -1,0 +1,16 @@
+services:
+  inkpress:
+    build: .
+    ports:
+      - '5330:5330'
+    environment:
+      - PORT=5330
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-change-me}
+      - BASE_URL=${BASE_URL:-http://localhost:5330}
+      - DATA_DIR=/data
+    volumes:
+      - inkpress-data:/data
+    restart: unless-stopped
+
+volumes:
+  inkpress-data:
