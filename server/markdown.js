@@ -2,7 +2,15 @@
 // post save (cached into posts.body_html_cache). Public pages never re-render
 // markdown — they just serve the cached HTML, so this async pipeline never
 // needs to run inside a hot public request.
-const { marked } = require('marked');
+//
+// marked v18+ ships as pure ESM with no CJS build, so it's loaded via dynamic
+// import() (works under both plain Node and Electron's renderer/main Node,
+// unlike relying on Node's require(esm) interop which Electron doesn't support).
+let markedPromise = null;
+async function getMarked() {
+  if (!markedPromise) markedPromise = import('marked');
+  return markedPromise;
+}
 
 let highlighterPromise = null;
 async function getHighlighter() {
@@ -41,6 +49,7 @@ async function highlightCode(code, lang) {
 // (async) shiki call can complete: first collect code blocks into placeholders,
 // then swap the placeholders in after highlighting.
 async function renderMarkdown(md) {
+  const { marked } = await getMarked();
   const source = String(md || '');
   const blocks = [];
   const renderer = new marked.Renderer();
