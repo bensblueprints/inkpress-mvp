@@ -81,7 +81,7 @@ The Electron wrapper boots the identical Express server on a free local port and
 
 Don't want to touch a terminal? Grab the packaged Windows installer (plus lifetime updates) on Whop:
 
-**→ [https://whop.com/onetime-suite](https://whop.com/onetime-suite)**
+**→ [https://whop.com/benjisaiempire/inkpress](https://whop.com/benjisaiempire/inkpress)**
 
 ## 🛠️ Tech stack
 
