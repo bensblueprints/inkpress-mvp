@@ -101,3 +101,7 @@ Boots a real server on a temp database and verifies: auth, post CRUD with auto-s
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE).
+
+## macOS build
+
+See [MAC-BUILD.md](MAC-BUILD.md). Quickest path: GitHub **Actions** tab -> run the **Mac Build** (`mac-build.yml`) workflow to get a downloadable `.dmg` (unsigned - right-click -> Open on first launch).
